@@ -1,0 +1,191 @@
+/* Queueless Custom Design & Animations */
+
+/* Glassmorphism effects */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.glass-nav {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* Jira story badge styling */
+.jira-badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.15rem 0.5rem;
+  border-radius: 9999px;
+  background-color: #eff6ff;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+}
+
+/* Boarding pass digital ticket cutouts */
+.ticket-container {
+  position: relative;
+  background: #ffffff;
+  border-radius: 1.25rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+}
+
+.ticket-notch-left, .ticket-notch-right {
+  position: absolute;
+  top: 65%;
+  width: 24px;
+  height: 24px;
+  background-color: #f8fafc;
+  border-radius: 50%;
+  z-index: 10;
+}
+
+.ticket-notch-left {
+  left: -12px;
+  border-right: 1px solid #e2e8f0;
+}
+
+.ticket-notch-right {
+  right: -12px;
+  border-left: 1px solid #e2e8f0;
+}
+
+.ticket-perforation {
+  position: absolute;
+  top: 65%;
+  left: 14px;
+  right: 14px;
+  height: 1px;
+  border-top: 2px dashed #cbd5e1;
+  z-index: 5;
+}
+
+/* Pulsing radar for active queue tracker */
+@keyframes radar-pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 15px rgba(59, 130, 246, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+  }
+}
+
+.animate-radar {
+  animation: radar-pulse 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+@keyframes green-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 18px rgba(16, 185, 129, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+.animate-serving-pulse {
+  animation: green-pulse 1.8s infinite;
+}
+
+/* Print ticket styles */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #printable-ticket, #printable-ticket * {
+    visibility: visible;
+  }
+  #printable-ticket {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* Accessibility Mode Styles */
+.accessibility-large-text {
+  font-size: 115% !important;
+}
+
+.accessibility-large-text button,
+.accessibility-large-text input,
+.accessibility-large-text select {
+  min-height: 48px !important;
+  font-size: 1rem !important;
+}
+
+.accessibility-high-contrast {
+  filter: contrast(125%);
+}
+
+.accessibility-high-contrast body {
+  background-color: #0b0f19 !important;
+  color: #f8fafc !important;
+}
+
+.accessibility-high-contrast .bg-white {
+  background-color: #111827 !important;
+  color: #f9fafb !important;
+  border-color: #374151 !important;
+}
+
+.accessibility-high-contrast .bg-slate-50,
+.accessibility-high-contrast .bg-slate-100 {
+  background-color: #1f2937 !important;
+  color: #f3f4f6 !important;
+}
+
+.accessibility-high-contrast .text-slate-900 {
+  color: #ffffff !important;
+}
+
+.accessibility-high-contrast .text-slate-500,
+.accessibility-high-contrast .text-slate-600 {
+  color: #cbd5e1 !important;
+}
+
+/* Emergency Pulsing Animations */
+@keyframes emergency-pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(225, 29, 72, 0.7);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 0 16px rgba(225, 29, 72, 0);
+    transform: scale(1.02);
+  }
+}
+
+.emergency-btn-pulse {
+  animation: emergency-pulse-glow 1.8s infinite;
+}
+
+@keyframes radar-sweep {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.radar-sweep-anim {
+  animation: radar-sweep 4s linear infinite;
+}
+
